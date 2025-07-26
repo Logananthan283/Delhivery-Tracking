@@ -13,6 +13,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// 🌐 Home Route to prevent "Cannot GET /"
+app.get("/", (req, res) => {
+  res.send(`<h2>✅ Delhivery Tracking API is running!</h2>
+  <p>Use <code>/track?type=awb&value=YOUR_AWB</code> to get tracking details.</p>`);
+});
+
 // 🎯 Tracking endpoint
 app.get("/track", async (req, res) => {
   const type = req.query.type; // 'awb', 'orderid', or 'mobile'
